@@ -6,10 +6,13 @@ import api from './services/api';
 function App() {
   const [input, setInput] = useState('')
   const [cep, setCep] = useState({})
+  const [mensagem, setMensagem] = useState('')
+
+  
 
   async function handleSearch(){
     if(input === ''){
-      alert("Preencha algum CEP!")
+      setMensagem("Preencha algum CEP!")
       return;
     }
     try{
@@ -18,7 +21,7 @@ function App() {
       setInput("")
     } 
     catch{
-      alert("Ops! Erro ao buscar o CEP informado. Verifique o CEP e digite novamente!")
+      setMensagem("Ops! Erro ao buscar o CEP informado. Verifique o CEP e digite novamente!")
       setInput("")
     }
   }
@@ -49,7 +52,7 @@ function App() {
           <span>{cep.localidade} - {cep.uf}</span>
       </div>
       )}
-      
+      <h3>{mensagem}</h3>
     </div>
   );
 }
